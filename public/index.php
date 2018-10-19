@@ -1,5 +1,8 @@
 <?php
 
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+
 chdir(dirname(__DIR__));
 require "vendor/autoload.php";
 
@@ -10,17 +13,17 @@ try {
 
     $request = \Zend\Diactoros\ServerRequestFactory::fromGlobals();
 
-    $name = $request->getQueryParams()['name'] ?? 'Гость';
+    $router = new League\Route\Router;
 
-    $response = new \Zend\Diactoros\Response\HtmlResponse('Привет ' . $name . '!');
+    $router->get('/', 'app\controller\HomeController::indexAction');
+    $router->get('/blog/{id:number}', 'app\controller\BlogController::indexAction');
+
+
+    $response = $router->dispatch($request);
 
     $emitter = new \Zend\HttpHandlerRunner\Emitter\SapiEmitter();
     $emitter->emit($response);
 
-//    $application = new \Phalcon\Mvc\Application($di);
-//
-//    $response = $application->handle()->getContent();
-//    echo $response;
 
 } catch (\Throwable $e) {
     dump($e);
