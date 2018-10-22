@@ -1,18 +1,14 @@
 <?php
-/**
- * @2016-2017 ООО "Маркетплейс" (goods.ru)
- * Все права защищены.
- * Создано: 19.10.18 Иван Цимбалист <ivan.tsimbalist@lenvendo.ru>
- */
 
 namespace app\controller;
 
 
+use framework\controller\ControllerAbstract;
 use League\Route\Http\Exception\NotFoundException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class BlogController
+class BlogController extends ControllerAbstract
 {
     protected $posts = [
         1 => [
@@ -30,11 +26,20 @@ class BlogController
         $id = $args['id'] ?? null;
         $post = $this->posts[$id] ?? null;
 
+// try errors
+//        echo й($w['31213']);
+//        throw new \Exception('fsd');
+//        throw new NotFoundException('fsd');
+
+
         if (empty($post)) {
             throw new NotFoundException('not found');
         }
 
-        return new \Zend\Diactoros\Response\HtmlResponse('<h1>' . $post['name'] . '</h1> <p>' . $post['text'] . '</p>');
+        $post['catalog'] = $this->getContainer()->get('dummy');
+
+        return $this->render('blog/show', $post);
+
     }
 
 }

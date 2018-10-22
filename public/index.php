@@ -1,30 +1,35 @@
 <?php
 
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
-
-chdir(dirname(__DIR__));
-require "vendor/autoload.php";
-
-
-//var_dump($q);
+define('PROJECT_ROOT', dirname(__DIR__));
+require PROJECT_ROOT . "/vendor/autoload.php";
 
 try {
 
+    $container = require PROJECT_ROOT . '/config/bootstrap.php';
+
     $request = \Zend\Diactoros\ServerRequestFactory::fromGlobals();
 
-    $router = new League\Route\Router;
 
-    $router->get('/', 'app\controller\HomeController::indexAction');
-    $router->get('/blog/{id:number}', 'app\controller\BlogController::indexAction');
+    /** @var \framework\Application $app */
+    $app = $container->get(\framework\Application::class);
 
 
-    $response = $router->dispatch($request);
+    $app->get('/', 'app\controller\HomeController::indexAction');
+    $app->get('/blog/{id:number}', 'app\controller\BlogController::indexAction');
 
-    $emitter = new \Zend\HttpHandlerRunner\Emitter\SapiEmitter();
+    try {
+        $response = $app->dispatch($request);
+    } catch (\League\Route\Http\Exception\NotFoundException $e) {
+        $response = new \Zend\Diactoros\Response\HtmlResponse($app->getView()->render('error/404', [
+            'request' => $request,
+        ]), 404);
+    }
+
+    /** @var \Zend\HttpHandlerRunner\Emitter\EmitterInterface $emitter */
+    $emitter = $container->get(\Zend\HttpHandlerRunner\Emitter\EmitterInterface::class);
     $emitter->emit($response);
 
 
 } catch (\Throwable $e) {
-    dump($e);
+    //dump($e);
 }
