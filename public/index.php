@@ -10,8 +10,8 @@ try {
     $request = \Zend\Diactoros\ServerRequestFactory::fromGlobals();
 
 
-    /** @var \framework\Application $app */
-    $app = $container->get(\framework\Application::class);
+    /** @var \PhpAcadem\framework\Application $app */
+    $app = $container->get(\PhpAcadem\framework\Application::class);
 
 
     $app->get('/', 'app\controller\HomeController::indexAction');
@@ -31,5 +31,5 @@ try {
 
 
 } catch (\Throwable $e) {
-    //dump($e);
+    dump($e);
 }

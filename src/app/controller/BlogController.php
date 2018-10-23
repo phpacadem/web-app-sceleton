@@ -3,7 +3,7 @@
 namespace app\controller;
 
 
-use framework\controller\ControllerAbstract;
+use PhpAcadem\framework\controller\ControllerAbstract;
 use League\Route\Http\Exception\NotFoundException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

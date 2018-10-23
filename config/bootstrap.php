@@ -18,9 +18,9 @@ return call_user_func(function () {
         $containerBuilder->writeProxiesToFile(true, $params['diCacheProxyDir']);
     }
 
-    if (!empty($params['diCacheCompilationDir'])) {
-        $containerBuilder->enableCompilation($params['diCacheCompilationDir']);
-    }
+//    if (!empty($params['diCacheCompilationDir'])) {
+//        $containerBuilder->enableCompilation($params['diCacheCompilationDir']);
+//    }
 
     $container = $containerBuilder->build();
 

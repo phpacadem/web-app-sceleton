@@ -15,14 +15,14 @@ $services = [
         return $c->get('env') == 'dev';
 
     }),
-    \framework\Application::class => DI\factory(function (Engine $view, ApplicationStrategy $strategy, $debug) {
-        $app = new \framework\Application();
+    \PhpAcadem\framework\Application::class => DI\factory(function (Engine $view, ApplicationStrategy $strategy, $debug) {
+        $app = new PhpAcadem\framework\Application();
 
         $app->setStrategy($strategy);
 
         $app->setView($view);
 
-        $app->middleware(new framework\middleware\ErrorHandlerMiddleware($view, $debug));
+        $app->middleware(new \PhpAcadem\framework\middleware\ErrorHandlerMiddleware($view, $debug));
 
         return $app;
 

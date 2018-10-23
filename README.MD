@@ -1,0 +1,1 @@
+composer create-project phpacadem/web-app-sceleton
