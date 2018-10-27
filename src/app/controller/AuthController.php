@@ -12,6 +12,20 @@ use Zend\Diactoros\Response\JsonResponse;
 class AuthController extends ControllerAbstract
 {
 
+    /**
+     * @var AuthService
+     */
+    protected $authService;
+
+    /**
+     * AuthController constructor.
+     * @param AuthService $authService
+     */
+    public function __construct(AuthService $authService)
+    {
+        $this->authService = $authService;
+    }
+
     public function indexAction(ServerRequestInterface $request): ResponseInterface
     {
         if ('POST' !== strtoupper($request->getMethod())) {
@@ -21,9 +35,8 @@ class AuthController extends ControllerAbstract
         $login = $request->getParsedBody()['sw_login'] ?? null;
         $password = $request->getParsedBody()['sw_password'] ?? null;
 
-        $authService = $this->container->get(AuthService::class);
 
-        $user = $authService->authenticate($login, $password);
+        $user = $this->authService->authenticate($login, $password);
 
         if ($user) {
             return $this->successResponse();

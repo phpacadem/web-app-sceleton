@@ -10,19 +10,6 @@ $services = [
         return $c->get('env') == 'dev';
 
     }),
-    PDO::class => DI\factory(function ($pdoConfig) { //todo
-        return new \PDO(
-            $pdoConfig['dsn'],
-            $pdoConfig['username'],
-            $pdoConfig['password'],
-            [
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            ]
-        );
-
-    })->parameter('pdoConfig', DI\get('pdo')),
-
-
 
     \PhpAcadem\framework\ApplicationInterface::class => DI\factory(function (
         \PhpAcadem\framework\Application $app,
@@ -35,9 +22,6 @@ $services = [
 
         return $app;
     }),
-
-
-
 
 ];
 

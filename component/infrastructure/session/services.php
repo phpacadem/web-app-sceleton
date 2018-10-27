@@ -6,10 +6,6 @@ use Zend\Expressive\Session\SessionInterface;
 use Zend\Expressive\Session\SessionPersistenceInterface;
 
 return [
-    /// Подумать что делать с сессией, она нужна но уж слишком сложно конфигурится - п
-    ///
-    /// Думаю надо запилить компонент сессий
-    ///
     SessionInterface::class => DI\factory(function (SessionPersistenceInterface $sessionPersistence, ServerRequestInterface $request) {
         return $session = new \Zend\Expressive\Session\LazySession($sessionPersistence, $request);
     }),
@@ -21,5 +17,4 @@ return [
     SessionPersistenceInterface::class => DI\factory(function () {
         return new PhpSessionPersistence();
     }),
-    //////////////////////////////
 ];

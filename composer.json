@@ -14,11 +14,10 @@
     "process-timeout": 0,
     "sort-packages": true
   },
-  "minimum-stability": "dev",
   "require": {
     "php": "^7.1",
     "ext-PDO": "^7.1",
-    "phpacadem/framework": "dev-master",
+    "phpacadem/framework": "^1.0",
     "zendframework/zend-expressive-session": "^1.1",
     "zendframework/zend-expressive-session-ext": "^1.2"
   },

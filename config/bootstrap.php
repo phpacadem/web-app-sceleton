@@ -11,16 +11,17 @@ return call_user_func(function () {
     $containerBuilder->addDefinitions($params);
     $containerBuilder->addDefinitions(__DIR__ . '/container.php');
 
-    $containerBuilder->useAutowiring(false);
+    $containerBuilder->useAutowiring(true);
     $containerBuilder->useAnnotations(false);
 
+
+    // this is for production
     if (!empty($params['diCacheProxyDir'])) {
         $containerBuilder->writeProxiesToFile(true, $params['diCacheProxyDir']);
     }
-
-//    if (!empty($params['diCacheCompilationDir'])) {
-//        $containerBuilder->enableCompilation($params['diCacheCompilationDir']);
-//    }
+    if (!empty($params['diCacheCompilationDir'])) {
+        $containerBuilder->enableCompilation($params['diCacheCompilationDir']);
+    }
 
     $container = $containerBuilder->build();
 
