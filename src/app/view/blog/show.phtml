@@ -1,6 +1,12 @@
-<?php $this->layout('main', ['title' => 'Блог']) ?>
+<?php
+$this->layout('main', ['title' => 'Блог'])
+
+/**
+ * @var \Blog\Post $post
+ */
+?>
 
 
-<h1><?= $name ?></h1>
-<p><?= $text ?></p>
+<h1><?= $post->getTitle() ?></h1>
+<p><?= $post->getContent() ?></p>
 

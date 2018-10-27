@@ -1,0 +1,50 @@
+<?php
+
+namespace Auth;
+
+
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface;
+use User\UserInterface;
+use User\UserServiceInterface;
+use Zend\Expressive\Session\SessionInterface;
+
+class AuthMiddleware implements MiddlewareInterface
+{
+    public const ATTRIBUTE = '_user';
+    /** @var UserServiceInterface */
+    protected $userService;
+
+    /** @var SessionInterface */
+    protected $session;
+
+    /**
+     * AuthMiddleware constructor.
+     * @param UserServiceInterface $userService
+     */
+    public function __construct(UserServiceInterface $userService, SessionInterface $session)
+    {
+        $this->userService = $userService;
+        $this->session = $session;
+    }
+
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    {
+
+        $user = null;
+
+        if ($this->session && $this->session->has(UserInterface::class)) {
+            $userInfo = $this->session->get(UserInterface::class);
+            if (!empty($userInfo['id'])) {
+                $user = $this->userService->getById($userInfo['id']);
+            }
+        }
+
+        return $handler->handle($request->withAttribute(self::ATTRIBUTE, $user));
+
+    }
+
+
+}

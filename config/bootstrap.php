@@ -7,7 +7,7 @@ return call_user_func(function () {
         $params = require __DIR__ . '/params/params.php.dist';
     }
 
-    $containerBuilder = new \DI\ContainerBuilder();
+    $containerBuilder = new \PhpAcadem\framework\container\ContainerBuilder();
     $containerBuilder->addDefinitions($params);
     $containerBuilder->addDefinitions(__DIR__ . '/container.php');
 

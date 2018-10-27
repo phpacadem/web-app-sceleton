@@ -6,5 +6,6 @@ use Zend\ConfigAggregator\PhpFileProvider;
 $aggregator = new ConfigAggregator([
     new PhpFileProvider(__DIR__ . '/di/services.php'),
     new PhpFileProvider(__DIR__ . '/../component/*/services.php'),
+    new PhpFileProvider(__DIR__ . '/../component/infrastructure/*/services.php'),
 ]);
 return $aggregator->getMergedConfig();
