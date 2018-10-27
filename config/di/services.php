@@ -1,54 +1,27 @@
 <?php
 
-
-use League\Plates\Engine;
-use League\Route\Strategy\ApplicationStrategy;
-use Slim\Views\PhpRenderer;
-use Zend\HttpHandlerRunner\Emitter\EmitterInterface;
-
-$sources = [
-
-];
-
-$services = [
+return [
     'debug' => DI\factory(function (\Psr\Container\ContainerInterface $c) {
         return $c->get('env') == 'dev';
 
     }),
-    \PhpAcadem\framework\Application::class => DI\factory(function (Engine $view, ApplicationStrategy $strategy, $debug) {
-        $app = new PhpAcadem\framework\Application();
 
-        $app->setStrategy($strategy);
+    \PhpAcadem\framework\ApplicationInterface::class => DI\factory(function (
+        \PhpAcadem\framework\Application $app,
+        \Infrastructure\Session\SessionMiddleware $sessionMiddleware,
+        \Auth\AuthMiddleware $authMiddleware
+    ) {
 
-        $app->setView($view);
-
-        $app->middleware(new \PhpAcadem\framework\middleware\ErrorHandlerMiddleware($view, $debug));
+        $app->middleware($sessionMiddleware);
+        $app->middleware($authMiddleware);
 
         return $app;
-
-    })->parameter('debug', DI\get('debug')),
-
-    ApplicationStrategy::class => DI\factory(function (\Psr\Container\ContainerInterface $c) {
-        $strategy = new ApplicationStrategy();
-        $strategy->setContainer($c);
-        return $strategy;
-    }),
-    Engine::class => DI\factory(function (\Psr\Container\ContainerInterface $c) {
-        $view = new League\Plates\Engine($c->get('templatePath'), 'phtml');
-        return $view;
-    }),
-    PhpRenderer::class => DI\factory(function (\Psr\Container\ContainerInterface $c) {
-        $view = new PhpRenderer($c->get('templatePath'));
-        return $view;
-    }),
-    EmitterInterface::class => DI\factory(function () {
-        return new \Zend\HttpHandlerRunner\Emitter\SapiEmitter();
     }),
 
+    'commands' => [
+        \app\command\DbInitCommand::class => DI\factory(function (PDO $pdo) {
+            return new \app\command\DbInitCommand($pdo);
+        }),
+    ]
 
 ];
-
-foreach ($sources as $source) {
-    $services = array_replace($services, require($source));
-}
-return $services;

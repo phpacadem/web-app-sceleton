@@ -1,29 +1,12 @@
 <?php
 
 return call_user_func(function () {
-    if (file_exists(__DIR__ . '/params/params.php')) {
-        $params = require __DIR__ . '/params/params.php';
-    } else {
-        $params = require __DIR__ . '/params/params.php.dist';
-    }
 
-    $containerBuilder = new \DI\ContainerBuilder();
-    $containerBuilder->addDefinitions($params);
-    $containerBuilder->addDefinitions(__DIR__ . '/container.php');
+    $containerBuilder = new \PhpAcadem\framework\container\ContainerBuilder();
 
-    $containerBuilder->useAutowiring(false);
-    $containerBuilder->useAnnotations(false);
-
-    if (!empty($params['diCacheProxyDir'])) {
-        $containerBuilder->writeProxiesToFile(true, $params['diCacheProxyDir']);
-    }
-
-//    if (!empty($params['diCacheCompilationDir'])) {
-//        $containerBuilder->enableCompilation($params['diCacheCompilationDir']);
-//    }
+    $containerBuilder->setConfigDir(__DIR__);
 
     $container = $containerBuilder->build();
-
 
     if (!defined('ENV_DEV')) {
         define('ENV_DEV', $container->get('env') === 'dev' ? true : false);

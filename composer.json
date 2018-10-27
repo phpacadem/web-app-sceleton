@@ -9,19 +9,32 @@
       "email": "phpacadem@inbox.ru"
     }
   ],
-  "minimum-stability": "RC",
+  "config": {
+    "optimize-autoloader": true,
+    "process-timeout": 0,
+    "sort-packages": true
+  },
   "require": {
     "php": "^7.1",
-    "phpacadem/framework": "dev-master"
+    "ext-PDO": "^7.1",
+    "phpacadem/framework": "^1.0",
+    "zendframework/zend-expressive-session": "^1.1",
+    "zendframework/zend-expressive-session-ext": "^1.2"
   },
   "autoload": {
     "psr-4": {
       "app\\": "src/app/",
-      "tests\\": "tests/",
-      "Dummy\\": "component/dummy/src/"
+      "Auth\\": "component/auth/src/",
+      "Blog\\": "component/blog/src/",
+      "Dummy\\": "component/dummy/src/",
+      "User\\": "component/user/src/",
+      "Infrastructure\\Session\\": "component/infrastructure/session/src/",
+      "Infrastructure\\PDO\\": "component/infrastructure/pdo/src/",
+      "tests\\": "tests/"
     }
   },
   "require-dev": {
+    "symfony/var-dumper": "^4.1"
   },
   "scripts": {
     "server": "php -S 0.0.0.0:8081 -t public",

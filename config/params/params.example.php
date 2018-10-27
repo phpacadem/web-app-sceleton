@@ -6,6 +6,15 @@ if (!defined('JSON_PRESERVE_ZERO_FRACTION')) {
 
 return [
     'env' => 'dev', // 'test', 'prod'
-    'templatePath' => __DIR__ . '/../../src/app/view/',
+
+    'templatePath' => __DIR__ . '/../../src/app/view',
+
+    'errorHandler' => 'app\controller\ErrorController::indexAction',
+
+    'pdo' => [
+        'dsn' => 'sqlite:' . __DIR__ . '/../../db/db.sqlite',
+        'username' => '',
+        'password' => '',
+    ],
 ];
 
