@@ -1,10 +1,10 @@
 <?php
 
-namespace Auth;
+namespace PhpAcadem\domain\Auth;
 
 
 use Interop\Container\ServiceProviderInterface;
-use User\UserServiceInterface;
+use PhpAcadem\domain\User\UserServiceInterface;
 
 class AuthComponent implements ServiceProviderInterface
 {
@@ -31,16 +31,16 @@ class AuthComponent implements ServiceProviderInterface
                 return new AuthMiddleware($userService, $session);
             },
 
-            \Auth\AuthRequiredMiddleware::class => function (\Psr\Container\ContainerInterface $c) {
+            AuthRequiredMiddleware::class => function (\Psr\Container\ContainerInterface $c) {
                 $userService = $c->get(UserServiceInterface::class);
                 $session = $c->get(\Zend\Expressive\Session\SessionInterface::class);
-                return new \Auth\AuthRequiredMiddleware($userService, $session);
+                return new AuthRequiredMiddleware($userService, $session);
             },
 
-            \Auth\AuthService::class => function (\Psr\Container\ContainerInterface $c) {
+            AuthService::class => function (\Psr\Container\ContainerInterface $c) {
                 $userService = $c->get(UserServiceInterface::class);
                 $session = $c->get(\Zend\Expressive\Session\SessionInterface::class);
-                return new \Auth\AuthService($userService, $session);
+                return new AuthService($userService, $session);
             },
         ];
     }

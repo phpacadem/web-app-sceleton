@@ -1,11 +1,11 @@
 <?php
 
-namespace User\command;
+namespace PhpAcadem\domain\User\command;
 
 
+use PhpAcadem\domain\User\UserServiceInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
-use User\UserServiceInterface;
 
 class InitCommand extends Command
 {

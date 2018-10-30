@@ -1,6 +1,6 @@
 <?php
 
-namespace Dummy;
+namespace PhpAcadem\Dummy;
 
 
 class Dummy

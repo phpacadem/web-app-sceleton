@@ -1,8 +1,8 @@
 <?php
 
-namespace Auth;
+namespace PhpAcadem\domain\Auth;
 
-use User\UserInterface;
+use PhpAcadem\domain\User\UserInterface;
 
 interface AuthServiceInterface
 {

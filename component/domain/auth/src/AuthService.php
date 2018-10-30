@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Auth;
+namespace PhpAcadem\domain\Auth;
 
 
-use User\UserInterface;
-use User\UserServiceInterface;
+use PhpAcadem\domain\User\UserInterface;
+use PhpAcadem\domain\User\UserServiceInterface;
 use Zend\Expressive\Session\SessionInterface;
 
 class AuthService implements AuthServiceInterface

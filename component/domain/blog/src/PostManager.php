@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Blog;
+namespace PhpAcadem\domain\Blog;
 
 
 use PDO;

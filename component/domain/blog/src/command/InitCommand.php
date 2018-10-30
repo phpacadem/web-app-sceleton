@@ -1,10 +1,10 @@
 <?php
 
-namespace Blog\command;
+namespace PhpAcadem\domain\Blog\command;
 
 
+use PhpAcadem\domain\User\UserServiceInterface;
 use Symfony\Component\Console\Command\Command;
-use User\UserServiceInterface;
 
 class InitCommand extends Command
 {

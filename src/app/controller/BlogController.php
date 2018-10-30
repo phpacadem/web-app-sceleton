@@ -3,8 +3,8 @@
 namespace app\controller;
 
 
-use Blog\PostManager;
 use League\Route\Http\Exception\NotFoundException;
+use PhpAcadem\domain\Blog\PostManager;
 use PhpAcadem\framework\controller\ControllerAbstract;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

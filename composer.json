@@ -24,10 +24,10 @@
   "autoload": {
     "psr-4": {
       "app\\": "src/app/",
-      "Auth\\": "component/auth/src/",
-      "Blog\\": "component/blog/src/",
-      "Dummy\\": "component/dummy/src/",
-      "User\\": "component/user/src/",
+      "PhpAcadem\\domain\\Auth\\": "component/domain/auth/src/",
+      "PhpAcadem\\domain\\Blog\\": "component/domain/blog/src/",
+      "PhpAcadem\\Dummy\\": "component/dummy/src/",
+      "PhpAcadem\\domain\\User\\": "component/domain/user/src/",
       "Infrastructure\\Session\\": "component/infrastructure/session/src/",
       "Infrastructure\\PDO\\": "component/infrastructure/pdo/src/",
       "tests\\": "tests/"

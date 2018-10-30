@@ -1,6 +1,6 @@
 <?php
 
-namespace User;
+namespace PhpAcadem\domain\User;
 
 
 class User implements UserInterface

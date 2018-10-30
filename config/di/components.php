@@ -3,7 +3,7 @@
 return [
     new \Infrastructure\PDO\PdoComponent(),
     new \Infrastructure\Session\SessionComponent(),
-    new \Auth\AuthComponent(),
-    new \Blog\BlogComponent(),
-    new \User\UserComponent(),
+    new \PhpAcadem\domain\Auth\AuthComponent(),
+    new \PhpAcadem\domain\Blog\BlogComponent(),
+    new \PhpAcadem\domain\User\UserComponent(),
 ];

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace User;
+namespace PhpAcadem\domain\User;
 
 
 class UserService implements UserServiceInterface

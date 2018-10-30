@@ -1,12 +1,10 @@
 <?php
-
-namespace User;
+namespace PhpAcadem\Dummy;
 
 
 use Interop\Container\ServiceProviderInterface;
-use PDO;
 
-class UserComponent implements ServiceProviderInterface
+class DummyComponent implements ServiceProviderInterface
 {
 
     /**
@@ -23,23 +21,10 @@ class UserComponent implements ServiceProviderInterface
     public function getFactories()
     {
         return [
-            \User\UserManager::class => function (\Psr\Container\ContainerInterface $c) {
-                $pdo = $c->get(PDO::class);
-                return new \User\UserManager($pdo);
-            },
-            \User\UserServiceInterface::class => function (\Psr\Container\ContainerInterface $c) {
-                $userManager = $c->get(\User\UserManager::class);
-                return new \User\UserService($userManager);
-            },
+            'dummy' => function (\Psr\Container\ContainerInterface $c) {
+                return new Dummy();
 
-            'commands' => [
-                \User\command\InitCommand::class => function (\Psr\Container\ContainerInterface $c) {
-                    $pdo = $c->get(PDO::class);
-                    $userService = $c->get(\User\UserServiceInterface::class);
-                    return new \User\command\InitCommand($pdo, $userService);
-                },
-            ],
-
+            },
         ];
     }
 

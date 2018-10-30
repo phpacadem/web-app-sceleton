@@ -1,14 +1,14 @@
 <?php
 
-namespace Auth;
+namespace PhpAcadem\domain\Auth;
 
 
+use PhpAcadem\domain\User\UserInterface;
+use PhpAcadem\domain\User\UserServiceInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use User\UserInterface;
-use User\UserServiceInterface;
 use Zend\Expressive\Session\SessionInterface;
 
 class AuthMiddleware implements MiddlewareInterface

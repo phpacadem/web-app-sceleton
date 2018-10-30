@@ -3,7 +3,7 @@
 namespace app\controller;
 
 
-use Auth\AuthService;
+use PhpAcadem\domain\Auth\AuthService;
 use PhpAcadem\framework\controller\ControllerAbstract;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

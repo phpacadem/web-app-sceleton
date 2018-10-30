@@ -1,6 +1,6 @@
 <?php
 
-namespace Blog;
+namespace PhpAcadem\domain\Blog;
 
 
 class Post

@@ -1,6 +1,6 @@
 <?php
 
-namespace Blog;
+namespace PhpAcadem\domain\Blog;
 
 
 use Interop\Container\ServiceProviderInterface;
@@ -22,16 +22,16 @@ class BlogComponent implements ServiceProviderInterface
     public function getFactories()
     {
         return [
-            \Blog\PostManager::class => function (\Psr\Container\ContainerInterface $c) {
+            PostManager::class => function (\Psr\Container\ContainerInterface $c) {
                 $pdo = $c->get(\PDO::class);
-                return new \Blog\PostManager($pdo);
+                return new PostManager($pdo);
             },
 
             'commands' => [
-                \Blog\command\InitCommand::class => function (\Psr\Container\ContainerInterface $c) {
+                command\InitCommand::class => function (\Psr\Container\ContainerInterface $c) {
                     $pdo = $c->get(\PDO::class);
-                    $userService = $c->get(\User\UserServiceInterface::class);
-                    return new \Blog\command\InitCommand($pdo, $userService);
+                    $userService = $c->get(\PhpAcadem\domain\User\UserServiceInterface::class);
+                    return new command\InitCommand($pdo, $userService);
                 },
             ],
         ];

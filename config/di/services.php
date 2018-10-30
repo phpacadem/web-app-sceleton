@@ -9,7 +9,7 @@ return [
     \PhpAcadem\framework\ApplicationInterface::class => DI\factory(function (
         \PhpAcadem\framework\Application $app,
         \Infrastructure\Session\SessionMiddleware $sessionMiddleware,
-        \Auth\AuthMiddleware $authMiddleware
+        \PhpAcadem\domain\Auth\AuthMiddleware $authMiddleware
     ) {
 
         $app->middleware($sessionMiddleware);

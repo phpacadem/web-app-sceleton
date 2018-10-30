@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "content-hash": "0d7b00aee4fc85464a804a1ff9ca2231",
@@ -655,16 +655,16 @@
         },
         {
             "name": "phpacadem/framework",
-            "version": "v1.0.2",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpacadem/framework.git",
-                "reference": "8e26a739a8b246c4fd21b38b8b213499f5020db4"
+                "reference": "c97fc3ef0cbd7a971c8247aa5d87d9509b110cf8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpacadem/framework/zipball/8e26a739a8b246c4fd21b38b8b213499f5020db4",
-                "reference": "8e26a739a8b246c4fd21b38b8b213499f5020db4",
+                "url": "https://api.github.com/repos/phpacadem/framework/zipball/c97fc3ef0cbd7a971c8247aa5d87d9509b110cf8",
+                "reference": "c97fc3ef0cbd7a971c8247aa5d87d9509b110cf8",
                 "shasum": ""
             },
             "require": {
@@ -713,7 +713,7 @@
                 "router",
                 "solid"
             ],
-            "time": "2018-10-27T20:25:31+00:00"
+            "time": "2018-10-30T06:15:53+00:00"
         },
         {
             "name": "psr/container",

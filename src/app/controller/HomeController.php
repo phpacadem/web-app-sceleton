@@ -3,7 +3,7 @@
 namespace app\controller;
 
 
-use Auth\AuthMiddleware;
+use PhpAcadem\domain\Auth\AuthMiddleware;
 use PhpAcadem\framework\controller\ControllerAbstract;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

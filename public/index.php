@@ -21,7 +21,7 @@ try {
     $app->get('/blog/{id:number}', 'app\controller\BlogController::indexAction');
 
     $app->get('/personal', 'app\controller\PersonalController::indexAction')
-        ->middleware($container->get(\Auth\AuthRequiredMiddleware::class));
+        ->middleware($container->get(\PhpAcadem\domain\Auth\AuthRequiredMiddleware::class));
 
     $app->get('/auth', 'app\controller\AuthController::logoutAction');
     $app->post('/auth', 'app\controller\AuthController::indexAction');

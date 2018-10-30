@@ -1,6 +1,6 @@
 <?php
 
-namespace Auth;
+namespace PhpAcadem\domain\Auth;
 
 
 class AuthRequiredException extends \Exception
