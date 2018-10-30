@@ -1,3 +1,4 @@
+
 #PhpAcadem Framework Skeleton Web Application
 
 Use this skeleton application to quickly setup and start working on a PhpAcadem Framework which follows PSR standards to the maximum.
