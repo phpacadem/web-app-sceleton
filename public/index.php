@@ -13,12 +13,12 @@ try {
     /** @var \PhpAcadem\framework\Application $app */
     $app = $container->get(ApplicationInterface::class);
 
-
     // Routes
     $app->get('/', 'app\controller\HomeController::indexAction');
 
 
-    $app->get('/blog/{id:number}', 'app\controller\BlogController::indexAction');
+    $app->get('/blog/{id:number}', 'app\controller\BlogController::indexAction')
+        ->setName('blogPost');
 
     $app->get('/personal', 'app\controller\PersonalController::indexAction')
         ->middleware($container->get(\PhpAcadem\domain\Auth\AuthRequiredMiddleware::class));

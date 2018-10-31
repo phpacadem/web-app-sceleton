@@ -1,12 +1,15 @@
 <?php
-$this->layout('main', ['title' => 'Блог'])
-
 /**
+ * @var \PhpAcadem\framework\view\Template $this
  * @var \PhpAcadem\domain\Blog\Post $post
  */
+$this->layout('main', ['title' => 'Блог']);
+
 ?>
 
 
 <h1><?= $post->getTitle() ?></h1>
 <p><?= $post->getContent() ?></p>
+
+<p><a href="<?= $this->url('blogPost', ['id' => 1]) ?>"><?= $post->getTitle() ?></a></p>
 
