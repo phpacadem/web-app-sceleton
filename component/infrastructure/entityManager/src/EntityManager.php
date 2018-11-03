@@ -119,17 +119,30 @@ class EntityManager implements EntityManagerInterface
         return array_shift($entities) ?? null;
     }
 
-    public function delete($ns, EntityInterface $entity)
+
+    public function deleteById($ns, $id)
     {
-        if (!$entity->getId()) {
-            return false;
+        return $this->deleteBy($ns, ['id' => $id]);
+    }
+
+    public function deleteBy($ns, array $conditions)
+    {
+
+        $sql = "delete from " . $this->getTableName($ns);
+
+        if (!empty($conditions)) {
+            $conditionsArray = [];
+            foreach ($conditions as $field => $value) {
+                $conditionsArray[] = "{$field}=:{$field}";
+
+            }
+
+            $sql .= " where " . implode(' and ', $conditionsArray);
         }
 
-        $sql = "delete from " . $this->getTableName($ns) . " where id=:id ";
         $stmt = $this->pdo->prepare($sql);
-        $result = $stmt->execute([
-            'id' => $entity->getId(),
-        ]);
+        $result = $stmt->execute($conditions);
+
         return $result;
     }
 
