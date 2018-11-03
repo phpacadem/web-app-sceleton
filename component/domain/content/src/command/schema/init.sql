@@ -25,3 +25,11 @@ CREATE TABLE IF NOT  EXISTS content_page(
   created_at INTEGER default (cast(strftime('%s','now') as int)),
   updated_at INTEGER default (cast(strftime('%s','now') as int))
 );
+
+CREATE TABLE IF NOT  EXISTS content_menu(
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  url VARCHAR(255) NOT NULL,
+  is_special BOOLEAN ,
+  sort INTEGER DEFAULT 10
+);

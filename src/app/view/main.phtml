@@ -11,12 +11,12 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/trac.css">
 
-    <title><?= $this->e($title) ?></title>
+    <title><?= $this->e($title ?? 'ИС Веб-программирование') ?></title>
 </head>
 <body>
 
 
-<?= $this->insert('layout/main/header') ?>
+<?= $this->insert('layout/main/header', ['menu' => $menu]) ?>
 <div class="container">
     <div class="row flex-xl-nowrap">
 

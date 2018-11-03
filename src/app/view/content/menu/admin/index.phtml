@@ -1,0 +1,44 @@
+<?php
+
+use app\route\RouteMap;
+
+/**
+ * @var \PhpAcadem\framework\view\Template $this
+ * @var \PhpAcadem\domain\Content\MenuItem[] $menus
+ */
+$this->layout('admin', ['title' => 'Блог']);
+
+?>
+
+<h1>Меню</h1>
+<p class="bd-lead">
+    <a href="<?= $this->url(RouteMap::CONTENT_ADMIN_MENU_NEW) ?>" class="btn btn-outline-primary" role="button">
+        Добавить пункт меню
+    </a>
+</p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Название</th>
+        <th scope="col">Ссылка</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($menus as $menu) { ?>
+
+        <tr>
+            <th scope="row"><?= $menu->getId() ?></th>
+            <td>
+                <a href="<?= $this->url(RouteMap::CONTENT_ADMIN_MENU_EDIT, ['id' => $menu->getId()]) ?>"><?= $menu->getTitle() ?></a>
+            </td>
+            <td>
+                <a href="<?= $menu->getUrl() ?>"><?= $menu->getUrl() ?></a>
+            </td>
+        </tr>
+
+    <?php } ?>
+    </tbody>
+</table>
+

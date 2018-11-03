@@ -1,0 +1,40 @@
+<?php
+/**
+ * @var \PhpAcadem\framework\view\Template $this
+ * @var \PhpAcadem\domain\Content\MenuItem $menu
+ */
+$this->layout('admin', ['title' => 'Блог']);
+
+$menu = $menu ?? null;
+?>
+
+
+<h1><?= ($menu) ? 'Редактирование пункта меню' : 'Новый пункт меню' ?></h1>
+
+<form method="post">
+
+    <div class="form-group">
+        <label for="title">Название</label>
+        <input type="text" class="form-control" name="title" id="title" aria-describedby="titlelHelp"
+               placeholder="Введите название пункта меню" value="<?= ($menu) ? htmlentities($menu->getTitle()) : '' ?>">
+        <small id="titlelHelp" class="form-text text-muted">Короткий заголовок, отражающий суть поста</small>
+    </div>
+
+    <div class="form-group">
+        <label for="content">Ссылка</label>
+        <input type="text" class="form-control" name="url" id="url"
+               placeholder="Ввдеите ссылку на страницу" value="<?= ($menu) ? htmlentities($menu->getUrl()) : '' ?>">
+
+    </div>
+
+    <div class="form-group">
+        <label for="content">Сортировка</label>
+        <input type="text" class="form-control" name="sort" id="sort" aria-describedby="sortlHelp"
+               placeholder="Введите индекс сортировки" value="<?= ($menu) ? htmlentities($menu->getSort()) : '' ?>">
+        <small id="sortlHelp" class="form-text text-muted">Индекс сортировки. Чем меньше - тем выше.</small>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>
+
