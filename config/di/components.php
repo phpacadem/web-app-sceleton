@@ -1,6 +1,7 @@
 <?php
 
 return [
+    new \Infrastructure\EntityManager\EntityManagerComponent(),
     new \Infrastructure\Hydrator\HydratorComponent(),
     new \Infrastructure\PDO\PdoComponent(),
     new \Infrastructure\Session\SessionComponent(),
