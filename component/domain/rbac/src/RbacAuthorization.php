@@ -47,6 +47,10 @@ class RbacAuthorization implements AuthorizationInterface
         }
         $routeName = $route->getName();
 
+        if ($group = $route->getParentGroup()) {
+            return $this->rbac->isGranted($role, $group->getName(), $this->assertion);
+        }
+
         return $this->rbac->isGranted($role, $routeName, $this->assertion);
     }
 }
