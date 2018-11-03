@@ -5,7 +5,8 @@
  * @var \PhpAcadem\domain\User\UserInterface $user
  * @var \PhpAcadem\domain\Rbac\Rbac $rbac
  */
-$rbac = $this->rbac();
+$rbac = $this->loadExtension('rbac');
+
 $this->layout('main', ['title' => 'Блог']);
 
 ?>
@@ -16,7 +17,7 @@ $this->layout('main', ['title' => 'Блог']);
 
 <?php
 $roles = $user ? $user->getRoles() : [];
-if ($rbac->isGranted($roles, 'blog.form')) {
+if ($rbac && $rbac->isGranted($roles, 'blog.form')) {
     ?>
     <p><a href="<?= $this->url('blog.form', ['id' => $post->getId()]) ?>">Редактировать</a></p>
 <?php } ?>
