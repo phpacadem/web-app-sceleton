@@ -17,6 +17,7 @@
   "require": {
     "php": "^7.1",
     "ext-PDO": "^7.1",
+    "cocur/slugify": "^3.1",
     "phpacadem/framework": "^1.0",
     "zendframework/zend-expressive-authorization": "^1.0",
     "zendframework/zend-expressive-session": "^1.1",
@@ -31,12 +32,15 @@
       "PhpAcadem\\Dummy\\": "component/dummy/src/",
       "PhpAcadem\\domain\\User\\": "component/domain/user/src/",
       "PhpAcadem\\domain\\Rbac\\": "component/domain/rbac/src/",
+      "Infrastructure\\EntityManager\\": "component/infrastructure/entityManager/src/",
+      "Infrastructure\\Hydrator\\": "component/infrastructure/hydrator/src/",
       "Infrastructure\\Session\\": "component/infrastructure/session/src/",
       "Infrastructure\\PDO\\": "component/infrastructure/pdo/src/",
       "tests\\": "tests/"
     }
   },
   "require-dev": {
+    "phpunit/phpunit": "^7.4",
     "symfony/var-dumper": "^4.1"
   },
   "scripts": {

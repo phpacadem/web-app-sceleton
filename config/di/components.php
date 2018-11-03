@@ -1,6 +1,7 @@
 <?php
 
 return [
+    new \Infrastructure\Hydrator\HydratorComponent(),
     new \Infrastructure\PDO\PdoComponent(),
     new \Infrastructure\Session\SessionComponent(),
     new \PhpAcadem\domain\Auth\AuthComponent(),
