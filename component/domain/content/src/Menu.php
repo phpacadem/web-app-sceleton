@@ -14,7 +14,7 @@ class Menu implements MenuInterface
      */
     public function getMenuItems(): array
     {
-        return $this->menuItems;
+        return $this->menuItems ?? [];
     }
 
     /**

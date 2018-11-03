@@ -13,29 +13,9 @@ try {
     /** @var \PhpAcadem\framework\Application $app */
     $app = $container->get(ApplicationInterface::class);
 
-    // Routes
-    $app->get('/', 'app\controller\HomeController::indexAction');
+    $router = $app->getRouter();
 
-    $app->get('/blog/', 'app\controller\BlogController::indexAction')
-        ->setName('blog.index');
-
-    $app->get('/blog/{id:number}', 'app\controller\BlogController::showAction')
-        ->setName('blog.show');
-
-    $app->get('/blog/{id:number}/edit', 'app\controller\BlogController::editAction')
-        ->middleware($container->get(\PhpAcadem\domain\Rbac\AuthorizationMiddleware::class))
-        ->setName('blog.form');
-
-    $app->post('/blog/{id:number}/edit', 'app\controller\BlogController::editAction')
-        ->middleware($container->get(\PhpAcadem\domain\Rbac\AuthorizationMiddleware::class))
-        ->setName('blog.save');
-
-    $app->get('/personal', 'app\controller\PersonalController::indexAction')
-        ->middleware($container->get(\PhpAcadem\domain\Auth\AuthRequiredMiddleware::class));
-
-    $app->get('/auth', 'app\controller\AuthController::logoutAction');
-    $app->post('/auth', 'app\controller\AuthController::indexAction');
-
+    require PROJECT_ROOT . "/config/route.php";
 
     // Handle
     $response = $app->handle();

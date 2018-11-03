@@ -16,7 +16,7 @@
 <body>
 
 
-<?= $this->insert('layout/main/header', ['menu' => $menu]) ?>
+<?= $this->insert('layout/main/header', ['menu' => $menu ?? new \PhpAcadem\domain\Content\Menu()]) ?>
 <div class="container">
     <div class="row flex-xl-nowrap">
 
