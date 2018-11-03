@@ -9,11 +9,16 @@ return [
     \PhpAcadem\framework\ApplicationInterface::class => DI\factory(function (
         \PhpAcadem\framework\Application $app,
         \Infrastructure\Session\SessionMiddleware $sessionMiddleware,
-        \PhpAcadem\domain\Auth\AuthMiddleware $authMiddleware
+        \PhpAcadem\domain\Auth\AuthMiddleware $authMiddleware,
+        \Psr\Container\ContainerInterface $c
     ) {
 
         $app->middleware($sessionMiddleware);
         $app->middleware($authMiddleware);
+
+        foreach ($c->get('viewExtensions') as $extention) {
+            $app->getView()->loadExtension($extention);
+        }
 
         return $app;
     }),

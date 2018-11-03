@@ -16,9 +16,19 @@ try {
     // Routes
     $app->get('/', 'app\controller\HomeController::indexAction');
 
+    $app->get('/blog/', 'app\controller\BlogController::indexAction')
+        ->setName('blog.index');
 
-    $app->get('/blog/{id:number}', 'app\controller\BlogController::indexAction')
-        ->setName('blogPost');
+    $app->get('/blog/{id:number}', 'app\controller\BlogController::showAction')
+        ->setName('blog.show');
+
+    $app->get('/blog/{id:number}/edit', 'app\controller\BlogController::editAction')
+        ->middleware($container->get(\PhpAcadem\domain\Rbac\AuthorizationMiddleware::class))
+        ->setName('blog.form');
+
+    $app->post('/blog/{id:number}/edit', 'app\controller\BlogController::editAction')
+        ->middleware($container->get(\PhpAcadem\domain\Rbac\AuthorizationMiddleware::class))
+        ->setName('blog.save');
 
     $app->get('/personal', 'app\controller\PersonalController::indexAction')
         ->middleware($container->get(\PhpAcadem\domain\Auth\AuthRequiredMiddleware::class));

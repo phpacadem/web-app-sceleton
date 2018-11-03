@@ -16,5 +16,17 @@ return [
         'username' => '',
         'password' => '',
     ],
+
+    'rbac' => [
+        'roles' => [
+            'admin' => [],
+        ],
+        'permissions' => [
+            'admin' => [
+                'blog.form',
+                'blog.save',
+            ],
+        ],
+    ]
 ];
 

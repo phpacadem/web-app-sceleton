@@ -1,0 +1,28 @@
+<?php
+/**
+ * @var \PhpAcadem\framework\view\Template $this
+ * @var \PhpAcadem\domain\Blog\Post $post
+ */
+$this->layout('main', ['title' => 'Блог']);
+
+?>
+
+
+<h1>Редактирование</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="title">Заголовок</label>
+        <input type="text" class="form-control" name="title" id="title" aria-describedby="titlelHelp"
+               placeholder="Enter title" value="<?= $post->getTitle() ?>">
+        <small id="titlelHelp" class="form-text text-muted">Короткий заголовок, отражающий суть поста</small>
+    </div>
+    <div class="form-group">
+        <label for="content">Содержимое поста</label>
+        <textarea class="form-control" name="content" id="content" rows="3"><?= $post->getContent() ?></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<p><a href="<?= $this->url('blog.show', ['id' => $post->getId()]) ?>">Просмотр</a></p>
+

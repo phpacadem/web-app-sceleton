@@ -9,4 +9,6 @@ interface UserServiceInterface
     public function login($login, $password): ?UserInterface;
 
     public function register($login, $password);
+
+    public function create($login, $password, $roles = []);
 }

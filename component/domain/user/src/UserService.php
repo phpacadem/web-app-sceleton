@@ -43,4 +43,10 @@ class UserService implements UserServiceInterface
         return $this->userManager->create($login, $password);
     }
 
+
+    public function create($login, $password, $roles = [])
+    {
+        return $this->userManager->create($login, $password, $roles);
+    }
+
 }

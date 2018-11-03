@@ -1,0 +1,29 @@
+<?php
+/**
+ * @var \PhpAcadem\framework\view\Template $this
+ * @var \PhpAcadem\domain\Blog\Post[] $posts
+ */
+$this->layout('main', ['title' => 'Блог']);
+
+?>
+
+<h1>Публикации в блоге</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">title</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($posts as $post) { ?>
+
+        <tr>
+            <th scope="row"><?= $post->getId() ?></th>
+            <td><a href="<?= $this->url('blog.show', ['id' => $post->getId()]) ?>"><?= $post->getTitle() ?></a></td>
+        </tr>
+
+    <?php } ?>
+    </tbody>
+</table>
+

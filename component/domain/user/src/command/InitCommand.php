@@ -5,7 +5,6 @@ namespace PhpAcadem\domain\User\command;
 
 use PhpAcadem\domain\User\UserServiceInterface;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputOption;
 
 class InitCommand extends Command
 {
@@ -23,19 +22,7 @@ class InitCommand extends Command
     {
         $this
             ->setName('user:init')
-            ->setDescription('Database initialization. Create component tables in database')
-            ->addOption(
-                'admin',
-                'a',
-                InputOption::VALUE_REQUIRED,
-                'Admin login'
-            )
-            ->addOption(
-                'password',
-                'p',
-                InputOption::VALUE_REQUIRED,
-                'Admin password'
-            );;
+            ->setDescription('Database initialization. Create component tables in database');
     }
 
     protected function execute(\Symfony\Component\Console\Input\InputInterface $input, \Symfony\Component\Console\Output\OutputInterface $output)
@@ -50,15 +37,5 @@ class InitCommand extends Command
             $result = $this->pdo->query($sql . ';');
         }
 
-        $login = $input->getOption('admin');
-        $password = $input->getOption('password');
-        if ((!empty($login) && empty($password)) || (empty($login) && !empty($password))) {
-            $output->writeln("Please specify both options admin and password");
-            exit;
-        }
-
-        if (!empty($login) && !empty($password)) {
-            $this->userService->register($login, $password);
-        }
     }
 }

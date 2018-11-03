@@ -49,11 +49,12 @@ class UserManager
         return new User($postData);
     }
 
-    public function create($login, $password)
+    public function create($login, $password, $roles = [])
     {
-        $stmt = $this->pdo->prepare("insert into user (name, login, password_hash) values('', :login, :password_hash)");
+        $stmt = $this->pdo->prepare("insert into user (name, login, roles, password_hash) values('', :login, :roles, :password_hash)");
         return $stmt->execute([
             'login' => $login,
+            'roles' => json_encode($roles),
             'password_hash' => password_hash($password, PASSWORD_DEFAULT),
         ]);
     }

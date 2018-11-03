@@ -8,6 +8,7 @@ class User implements UserInterface
     protected $id;
     protected $name;
     protected $login;
+    protected $roles;
     protected $password_hash;
 
     /**
@@ -21,6 +22,22 @@ class User implements UserInterface
                 $this->$key = $datum;
             }
         }
+    }
+
+    /**
+     * @return array
+     */
+    public function getRoles()
+    {
+        return $this->roles ? json_decode($this->roles) : [];
+    }
+
+    /**
+     * @param mixed $roles
+     */
+    public function setRoles(array $roles): void
+    {
+        $this->roles = json_encode($roles);
     }
 
     /**

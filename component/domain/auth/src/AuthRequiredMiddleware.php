@@ -13,7 +13,6 @@ use Zend\Expressive\Session\SessionInterface;
 
 class AuthRequiredMiddleware implements MiddlewareInterface
 {
-    public const ATTRIBUTE = '_user';
     /** @var UserServiceInterface */
     protected $userService;
 
@@ -48,6 +47,6 @@ class AuthRequiredMiddleware implements MiddlewareInterface
             $user = $this->userService->getById($userInfo['id']);
         }
 
-        return $handler->handle($request->withAttribute(self::ATTRIBUTE, $user));
+        return $handler->handle($request->withAttribute(UserInterface::class, $user));
     }
 }

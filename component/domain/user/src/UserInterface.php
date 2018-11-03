@@ -15,6 +15,17 @@ interface UserInterface
     public function setId($id): void;
 
     /**
+     * @return array
+     */
+    public function getRoles();
+
+    /**
+     * @param mixed $roles
+     */
+    public function setRoles(array $roles): void;
+
+
+    /**
      * @return mixed
      */
     public function getName();

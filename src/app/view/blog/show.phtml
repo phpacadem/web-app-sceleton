@@ -2,7 +2,10 @@
 /**
  * @var \PhpAcadem\framework\view\Template $this
  * @var \PhpAcadem\domain\Blog\Post $post
+ * @var \PhpAcadem\domain\User\UserInterface $user
+ * @var \PhpAcadem\domain\Rbac\Rbac $rbac
  */
+$rbac = $this->rbac();
 $this->layout('main', ['title' => 'Блог']);
 
 ?>
@@ -11,5 +14,10 @@ $this->layout('main', ['title' => 'Блог']);
 <h1><?= $post->getTitle() ?></h1>
 <p><?= $post->getContent() ?></p>
 
-<p><a href="<?= $this->url('blogPost', ['id' => 1]) ?>"><?= $post->getTitle() ?></a></p>
+<?php
+$roles = $user ? $user->getRoles() : [];
+if ($rbac->isGranted($roles, 'blog.form')) {
+    ?>
+    <p><a href="<?= $this->url('blog.form', ['id' => $post->getId()]) ?>">Редактировать</a></p>
+<?php } ?>
 

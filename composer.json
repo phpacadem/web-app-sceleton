@@ -18,8 +18,10 @@
     "php": "^7.1",
     "ext-PDO": "^7.1",
     "phpacadem/framework": "^1.0",
+    "zendframework/zend-expressive-authorization": "^1.0",
     "zendframework/zend-expressive-session": "^1.1",
-    "zendframework/zend-expressive-session-ext": "^1.2"
+    "zendframework/zend-expressive-session-ext": "^1.2",
+    "zendframework/zend-permissions-rbac": "^3.0"
   },
   "autoload": {
     "psr-4": {
@@ -28,6 +30,7 @@
       "PhpAcadem\\domain\\Blog\\": "component/domain/blog/src/",
       "PhpAcadem\\Dummy\\": "component/dummy/src/",
       "PhpAcadem\\domain\\User\\": "component/domain/user/src/",
+      "PhpAcadem\\domain\\Rbac\\": "component/domain/rbac/src/",
       "Infrastructure\\Session\\": "component/infrastructure/session/src/",
       "Infrastructure\\PDO\\": "component/infrastructure/pdo/src/",
       "tests\\": "tests/"
