@@ -4,6 +4,7 @@ namespace app\controller\content\admin;
 
 
 use Cocur\Slugify\Slugify;
+use League\Route\Http\Exception\NotFoundException;
 use PhpAcadem\domain\Content\PageManager;
 use PhpAcadem\framework\controller\ControllerAbstract;
 use Psr\Http\Message\ResponseInterface;

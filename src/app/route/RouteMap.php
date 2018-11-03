@@ -30,12 +30,19 @@ class RouteMap
     public const CONTENT_ADMIN_PAGE_EDIT = "page.admin.edit";
     public const CONTENT_ADMIN_PAGE_SAVE = "page.admin.save";
 
+    public const CONTENT_ADMIN_MENU = "menu.admin";
+    public const CONTENT_ADMIN_MENU_INDEX = "menu.admin.index";
+    public const CONTENT_ADMIN_MENU_NEW = "menu.admin.new";
+    public const CONTENT_ADMIN_MENU_EDIT = "menu.admin.edit";
+    public const CONTENT_ADMIN_MENU_SAVE = "menu.admin.save";
+
     public static function getAdminRoutes()
     {
         return [
             self::CONTENT_ADMIN_SECTION,
             self::CONTENT_ADMIN_ARTICLE,
             self::CONTENT_ADMIN_PAGE,
+            self::CONTENT_ADMIN_MENU,
         ];
     }
 }

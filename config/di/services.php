@@ -10,11 +10,13 @@ return [
         \PhpAcadem\framework\Application $app,
         \Infrastructure\Session\SessionMiddleware $sessionMiddleware,
         \PhpAcadem\domain\Auth\AuthMiddleware $authMiddleware,
+        \app\middleware\LayoutMiddleware $layoutMiddleware,
         \Psr\Container\ContainerInterface $c
     ) {
 
         $app->middleware($sessionMiddleware);
         $app->middleware($authMiddleware);
+        $app->middleware($layoutMiddleware);
 
         foreach ($c->get('viewExtensions') as $extention) {
             $app->getView()->loadExtension($extention);

@@ -12,7 +12,7 @@ class User implements UserInterface
     protected $password_hash;
 
     /**
-     * Post constructor.
+     * User constructor.
      * @param array $data
      */
     public function __construct($data = [])
