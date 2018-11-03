@@ -1,0 +1,57 @@
+<?php
+/**
+ * @var \PhpAcadem\framework\view\Template $this
+ * @var \PhpAcadem\domain\Content\Article $article
+ * @var \PhpAcadem\domain\Content\Section[] $sections
+ * @var int $sectionId
+ */
+$this->layout('admin', ['title' => 'Блог']);
+
+$article = $article ?? null;
+$sectionId = ($article) ? $article->getSectionId() : $sectionId;
+
+?>
+
+
+<h1><?= ($article) ? 'Редактирование статьи' : 'Новая статья' ?></h1>
+
+<form method="post">
+
+    <div class="form-group">
+        <label for="title">Заголовок</label>
+        <input type="text" class="form-control" name="title" id="title" aria-describedby="titlelHelp"
+               placeholder="Enter title" value="<?= ($article) ? $article->getTitle() : '' ?>">
+        <small id="titlelHelp" class="form-text text-muted">Короткий заголовок, отражающий суть поста</small>
+    </div>
+
+    <div class="form-group">
+        <label for="section_id">Секция</label>
+        <select class="form-control" name="section_id" id="section_id" readonly="readonly">
+            <?php foreach ($sections as $section) { ?>
+                <option value="<?= $section->getId() ?>" <?= ($sectionId === $section->getId()) ? 'selected' : '' ?>><?= $section->getTitle() ?></option>
+            <?php } ?>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="content">Содержимое поста</label>
+        <textarea class="form-control" name="content" id="content"
+                  rows="3"><?= htmlentities(($article) ? $article->getContent() : '') ?></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="status">Статус</label>
+        <select class="form-control" name="status" id="status">
+            <option value="1" <?= (($article) && $article->getStatus() == 1) ? 'selected' : '' ?>>Опубликован</option>
+            <option value="0" <?= (($article) && $article->getStatus() == 0) ? 'selected' : '' ?>>Черновик</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<?php if ($article) { ?>
+    <p>
+        <a href="<?= $this->url(\app\route\RouteMap::CONTENT_ARTICLE_SHOW, ['slug' => $article->getSlug()]) ?>">Просмотр</a>
+    </p>
+<?php } ?>

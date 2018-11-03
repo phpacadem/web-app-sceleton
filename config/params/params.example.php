@@ -1,5 +1,7 @@
 <?php
 
+use app\route\RouteMap;
+
 if (!defined('JSON_PRESERVE_ZERO_FRACTION')) {
     define('JSON_PRESERVE_ZERO_FRACTION', 1024);
 }
@@ -22,10 +24,11 @@ return [
             'admin' => [],
         ],
         'permissions' => [
-            'admin' => [
+            'admin' => array_merge([
                 'blog.form',
                 'blog.save',
             ],
+                RouteMap::getAdminRoutes()),
         ],
     ]
 ];

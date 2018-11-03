@@ -1,0 +1,43 @@
+<?php
+/**
+ * @var \PhpAcadem\framework\view\Template $this
+ * @var \PhpAcadem\domain\Content\Page $page
+ */
+$this->layout('admin', ['title' => 'Блог']);
+
+$page = $page ?? null;
+?>
+
+
+<h1><?= ($page) ? 'Редактирование страницы' : 'Новая страница' ?></h1>
+
+<form method="post">
+
+    <div class="form-group">
+        <label for="title">Заголовок</label>
+        <input type="text" class="form-control" name="title" id="title" aria-describedby="titlelHelp"
+               placeholder="Enter title" value="<?= ($page) ? htmlentities($page->getTitle()) : '' ?>">
+        <small id="titlelHelp" class="form-text text-muted">Короткий заголовок, отражающий суть поста</small>
+    </div>
+
+    <div class="form-group">
+        <label for="content">Содержимое поста</label>
+        <textarea class="form-control" name="content" id="content"
+                  rows="3"><?= htmlentities($page ? $page->getContent() : '') ?></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="status">Статус</label>
+        <select class="form-control" name="status" id="status">
+            <option value="1" <?= ($page && $page->getStatus() == 1) ? 'selected' : '' ?>>Опубликован</option>
+            <option value="0" <?= ($page && $page->getStatus() == 0) ? 'selected' : '' ?>>Черновик</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<?php if ($page) { ?>
+    <p><a href="<?= $this->url(\app\route\RouteMap::CONTENT_PAGE_SHOW, ['slug' => $page->getSlug()]) ?>">Просмотр</a>
+    </p>
+<?php } ?>

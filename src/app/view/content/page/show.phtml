@@ -1,0 +1,25 @@
+<?php
+/**
+ * @var \PhpAcadem\framework\view\Template $this
+ * @var \PhpAcadem\domain\Content\Article $page
+ * @var \PhpAcadem\domain\User\UserInterface $user
+ * @var \PhpAcadem\domain\Rbac\Rbac $rbac
+ */
+$rbac = $this->loadExtension('rbac');
+
+$this->layout('main', ['title' => 'Блог']);
+
+?>
+<?php
+$roles = $user ? $user->getRoles() : [];
+if ($rbac && $rbac->isGranted($roles, \app\route\RouteMap::CONTENT_ADMIN_PAGE)) {
+    ?>
+    <p>
+        <a href="<?= $this->url(\app\route\RouteMap::CONTENT_ADMIN_PAGE_EDIT, ['id' => $page->getId()]) ?>">Редактировать</a>
+    </p>
+<?php } ?>
+
+
+<h1><?= $this->e($page->getTitle()) ?></h1>
+<p><?= $page->getContent() ?></p>
+

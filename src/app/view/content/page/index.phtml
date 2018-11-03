@@ -1,0 +1,35 @@
+<?php
+
+use app\route\RouteMap;
+
+/**
+ * @var \PhpAcadem\framework\view\Template $this
+ * @var \PhpAcadem\domain\Content\Article[] $articles
+ * @var \PhpAcadem\domain\Content\Section $section
+ */
+$this->layout('main', ['title' => 'Блог']);
+
+?>
+
+<h1><?= $section->getTitle() ?></h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">title</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($articles as $article) { ?>
+
+        <tr>
+            <th scope="row"><?= $article->getId() ?></th>
+            <td>
+                <a href="<?= $this->url(RouteMap::CONTENT_ARTICLE_SHOW, ['slug' => $article->getSlug()]) ?>"><?= $article->getTitle() ?></a>
+            </td>
+        </tr>
+
+    <?php } ?>
+    </tbody>
+</table>
+

@@ -1,0 +1,39 @@
+<?php
+
+use app\route\RouteMap;
+
+/**
+ * @var \PhpAcadem\framework\view\Template $this
+ * @var \PhpAcadem\domain\Content\Page[] $pages
+ */
+$this->layout('admin', ['title' => 'Блог']);
+
+?>
+
+<h1>Страницы</h1>
+<p class="bd-lead">
+    <a href="<?= $this->url(RouteMap::CONTENT_ADMIN_PAGE_NEW) ?>" class="btn btn-outline-primary" role="button">Новая
+        страница</a>
+</p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">title</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($pages as $page) { ?>
+
+        <tr>
+            <th scope="row"><?= $page->getId() ?></th>
+            <td>
+                <a href="<?= $this->url(RouteMap::CONTENT_ADMIN_PAGE_EDIT, ['id' => $page->getId()]) ?>"><?= $page->getTitle() ?></a>
+            </td>
+        </tr>
+
+    <?php } ?>
+    </tbody>
+</table>
+

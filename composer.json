@@ -29,6 +29,7 @@
       "app\\": "src/app/",
       "PhpAcadem\\domain\\Auth\\": "component/domain/auth/src/",
       "PhpAcadem\\domain\\Blog\\": "component/domain/blog/src/",
+      "PhpAcadem\\domain\\Content\\": "component/domain/content/src/",
       "PhpAcadem\\Dummy\\": "component/dummy/src/",
       "PhpAcadem\\domain\\User\\": "component/domain/user/src/",
       "PhpAcadem\\domain\\Rbac\\": "component/domain/rbac/src/",

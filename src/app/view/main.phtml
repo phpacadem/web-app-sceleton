@@ -8,15 +8,39 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/trac.css">
 
     <title><?= $this->e($title) ?></title>
 </head>
 <body>
 
 
-<?= $this->insert('main/header') ?>
+<?= $this->insert('layout/main/header') ?>
 <div class="container">
-    <?= $this->section('content') ?>
+    <div class="row flex-xl-nowrap">
+
+        <main class="col-12 col-md-8 col-xl-9 py-md-3 pl-md-5 bd-content" role="main">
+            <?= $this->section('content') ?>
+        </main>
+        <!--        <div class="d-none d-md-block col-xl-3 col-md-4 bd-toc">-->
+        <!--            <ul class="nav flex-column">-->
+        <!--                <li class="nav-item">-->
+        <!--                    <a class="nav-link active" href="#">Active</a>-->
+        <!--                </li>-->
+        <!--                <li class="nav-item">-->
+        <!--                    <a class="nav-link" href="#">Link</a>-->
+        <!--                </li>-->
+        <!--                <li class="nav-item">-->
+        <!--                    <a class="nav-link" href="#">Link</a>-->
+        <!--                </li>-->
+        <!--                <li class="nav-item">-->
+        <!--                    <a class="nav-link disabled" href="#">Disabled</a>-->
+        <!--                </li>-->
+        <!--            </ul>-->
+        <!--        </div>-->
+    </div>
+
 </div>
 </body>
 </html>

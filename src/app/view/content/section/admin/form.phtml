@@ -1,0 +1,22 @@
+<?php
+/**
+ * @var \PhpAcadem\framework\view\Template $this
+ * @var \PhpAcadem\domain\Content\Section $section
+ */
+$this->layout('admin', ['title' => 'Блог']);
+
+$section = $section ?? null;
+?>
+
+
+<h1><?= ($section) ? 'Редактирование секции' : 'Новая секция' ?></h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="title">Заголовок</label>
+        <input type="text" class="form-control" name="title" id="title" aria-describedby="titlelHelp"
+               placeholder="Enter title" value="<?= ($section) ? $section->getTitle() : '' ?>">
+        <small id="titlelHelp" class="form-text text-muted">Короткий заголовок, отражающий суть поста</small>
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>
