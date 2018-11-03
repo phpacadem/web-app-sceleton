@@ -27,6 +27,12 @@ return [
         \app\command\DbInitCommand::class => DI\factory(function (PDO $pdo) {
             return new \app\command\DbInitCommand($pdo);
         }),
+        \app\command\DbDumpCommand::class => DI\factory(function (PDO $pdo) {
+            return new \app\command\DbDumpCommand($pdo);
+        }),
+        \app\command\DbImportCommand::class => DI\factory(function (PDO $pdo) {
+            return new \app\command\DbImportCommand($pdo);
+        }),
     ]
 
 ];
