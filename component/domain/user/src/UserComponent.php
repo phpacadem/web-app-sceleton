@@ -39,9 +39,8 @@ class UserComponent implements ServiceProviderInterface
                     return new \PhpAcadem\domain\User\command\InitCommand($pdo, $userService);
                 },
                 \PhpAcadem\domain\User\command\UserAddCommand::class => function (\Psr\Container\ContainerInterface $c) {
-                    $pdo = $c->get(PDO::class);
                     $userService = $c->get(\PhpAcadem\domain\User\UserServiceInterface::class);
-                    return new \PhpAcadem\domain\User\command\UserAddCommand($pdo, $userService);
+                    return new \PhpAcadem\domain\User\command\UserAddCommand($userService);
                 },
             ],
 

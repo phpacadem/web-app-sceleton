@@ -1,6 +1,6 @@
 <?php
 
-namespace Infrastructure\hydrator;
+namespace Infrastructure\Hydrator;
 
 
 use Interop\Container\ServiceProviderInterface;

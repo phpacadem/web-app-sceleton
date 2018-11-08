@@ -7,12 +7,19 @@
          stopOnFailure="false">
     <testsuites>
         <testsuite name="Test Suite">
-            <directory>./tests</directory>
+            <directory>./component</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist>
-            <directory suffix=".php">./framework/</directory>
+            <directory suffix=".php">./component/</directory>
+            <exclude>
+                <directory suffix="Test.php">./component/</directory>
+            </exclude>
         </whitelist>
     </filter>
+    <logging>
+        <log type="coverage-html" target="./runtime/tests/report"
+             lowUpperBound="50" highLowerBound="80"/>
+    </logging>
 </phpunit>

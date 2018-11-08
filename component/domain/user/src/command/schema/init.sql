@@ -6,3 +6,4 @@ CREATE TABLE IF NOT  EXISTS user(
   roles TEXT,
   password_hash VARCHAR(255) NOT NULL
   );
+  ;

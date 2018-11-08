@@ -9,12 +9,12 @@ use Symfony\Component\Console\Input\InputOption;
 
 class UserAddCommand extends Command
 {
-    protected $pdo;
+    public const COMMAND_NAME = 'user:add';
+    public const COMMAND_ERROR_PARAMS = 1;
     protected $userService;
 
-    public function __construct(\PDO $pdo, UserServiceInterface $userService)
+    public function __construct(UserServiceInterface $userService)
     {
-        $this->pdo = $pdo;
         $this->userService = $userService;
         parent::__construct();
     }
@@ -22,7 +22,7 @@ class UserAddCommand extends Command
     protected function configure(): void
     {
         $this
-            ->setName('user:add')
+            ->setName(self::COMMAND_NAME)
             ->setDescription('User adding')
             ->addOption(
                 'user',
@@ -52,7 +52,7 @@ class UserAddCommand extends Command
         $isAdmin = $input->getOption('admin');
         if (empty($login) || empty($password)) {
             $output->writeln("Please specify both options admin and password");
-            exit;
+            return self::COMMAND_ERROR_PARAMS;
         }
 
         if (!empty($login) && !empty($password)) {
