@@ -5,6 +5,7 @@ namespace app\controller\content\admin;
 
 use Cocur\Slugify\Slugify;
 use League\Route\Http\Exception\NotFoundException;
+use PhpAcadem\domain\Content\Section;
 use PhpAcadem\domain\Content\SectionManager;
 use PhpAcadem\framework\controller\ControllerAbstract;
 use Psr\Http\Message\ResponseInterface;
@@ -61,6 +62,7 @@ class SectionController extends ControllerAbstract
             }
 
             $section->setSlug($this->slugify->slugify($section->getTitle()));
+            $section->setStatus(Section::STATUS_PUBLISHED);
 
             $this->sectionManager->save($section);
         }
