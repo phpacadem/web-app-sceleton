@@ -60,7 +60,7 @@ class MenuController extends ControllerAbstract
         }
         $params = [];
         if (isset($menu)) {
-            $params['menu'] = $menu;
+            $params['menuEl'] = $menu;
         }
 
         return $this->render('content/menu/admin/form', $params);
