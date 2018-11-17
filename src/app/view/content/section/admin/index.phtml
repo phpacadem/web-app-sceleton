@@ -22,6 +22,7 @@ $this->layout('admin', ['title' => 'Блог']);
     <tr>
         <th scope="col">#</th>
         <th scope="col">Название</th>
+        <th scope="col">Просмотр</th>
         <th scope="col">Статьи</th>
     </tr>
     </thead>
@@ -32,6 +33,10 @@ $this->layout('admin', ['title' => 'Блог']);
             <th scope="row"><?= $section->getId() ?></th>
             <td>
                 <a href="<?= $this->url(RouteMap::CONTENT_ADMIN_SECTION_EDIT, ['id' => $section->getId()]) ?>"><?= $section->getTitle() ?></a>
+            </td>
+            <td>
+                <a href="<?= $this->url(RouteMap::CONTENT_ARTICLE_INDEX, ['section' => $section->getSlug()]) ?>">На
+                    сайте</a>
             </td>
             <td>
                 <a href="<?= $this->url(RouteMap::CONTENT_ADMIN_ARTICLE_INDEX, ['id' => $section->getId()]) ?>">Статьи</a>

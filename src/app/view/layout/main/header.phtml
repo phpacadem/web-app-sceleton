@@ -1,9 +1,28 @@
+<?php
+/**
+ * @var \PhpAcadem\domain\Rbac\Rbac $rbac
+ * @var \PhpAcadem\domain\User\UserInterface $user
+ */
+$rbac = $this->loadExtension('rbac');
+$roles = $user ? $user->getRoles() : [];
+?>
+
 <header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar"
         style="background-color: rebeccapurple">
     <a class="navbar-brand mr-0 mr-md-2" href="/" aria-label="Bootstrap">
         ИС "Веб-программирование"
     </a>
     <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+        <?php if ($rbac && $rbac->isGranted($roles, \app\route\RouteMap::ADMIN)) { ?>
+            <li class="nav-item">
+                <a class="nav-link p-2 btn btn-outline-danger"
+                   href="<?= $this->url(\app\route\RouteMap::ADMIN) ?>">
+                    Управление
+                </a>
+            </li>
+
+        <?php } ?>
+
         <?php
         /** @var \PhpAcadem\domain\Content\MenuInterface $menu */
         foreach ($menu->getMenuItems() as $menuItem) { ?>
@@ -14,7 +33,6 @@
                 </a>
             </li>
         <?php } ?>
-
 
     </ul>
 </header>

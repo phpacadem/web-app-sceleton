@@ -6,6 +6,8 @@ namespace app\route;
 
 class RouteMap
 {
+    public const ADMIN = "admin";
+
     public const CONTENT_ADMIN_SECTION = "section.admin";
     public const CONTENT_ADMIN_SECTION_INDEX = "section.admin.index";
     public const CONTENT_ADMIN_SECTION_NEW = "section.admin.new";
@@ -39,6 +41,7 @@ class RouteMap
     public static function getAdminRoutes()
     {
         return [
+            self::ADMIN,
             self::CONTENT_ADMIN_SECTION,
             self::CONTENT_ADMIN_ARTICLE,
             self::CONTENT_ADMIN_PAGE,

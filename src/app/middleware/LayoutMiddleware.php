@@ -4,6 +4,7 @@ namespace app\middleware;
 
 
 use PhpAcadem\domain\Content\MenuManager;
+use PhpAcadem\domain\User\UserInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -28,7 +29,12 @@ class LayoutMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $menu = $this->menuManger->getMenu();
-        $layoutData = ['menu' => $menu];
+        $layoutData = [
+            'menu' => $menu
+        ];
+        if ($user = $request->getAttribute(UserInterface::class)) {
+            $layoutData['user'] = $user;
+        }
         return $handler->handle($request->withAttribute('layoutData', $layoutData));
 
     }
