@@ -24,10 +24,10 @@ $router->group('/admin/section', function (\League\Route\RouteGroup $router) {
     $router->get('//', 'app\controller\content\admin\SectionController::indexAction')
         ->setName(RouteMap::CONTENT_ADMIN_SECTION_INDEX);
 
-    $router->get('/new', 'app\controller\content\admin\SectionController::editAction')
+    $router->get('/new/', 'app\controller\content\admin\SectionController::editAction')
         ->setName(RouteMap::CONTENT_ADMIN_SECTION_NEW);
-    $router->post('/section/new', 'app\controller\content\admin\SectionController::editAction')
-        ->setName('section.new.save');
+    $router->post('/new/', 'app\controller\content\admin\SectionController::editAction')
+        ->setName('section.admin.new.save');
 
     $router->get('/edit/{id:number}', 'app\controller\content\admin\SectionController::editAction')
         ->setName(RouteMap::CONTENT_ADMIN_SECTION_EDIT);
