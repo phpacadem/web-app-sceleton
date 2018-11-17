@@ -8,7 +8,7 @@ use Symfony\Component\Console\Command\Command;
 
 class InitCommand extends Command
 {
-    public const COMMAND_NAME = 'user:add';
+    public const COMMAND_NAME = 'user:init';
     public const COMMAND_ERROR = 1;
 
     protected $pdo;
